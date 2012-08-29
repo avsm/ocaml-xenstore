@@ -45,6 +45,15 @@ Library xenstore_server_xen
   Modules: Xs_transport_domain
   BuildDepends: lwt, xenstore, xenstore.server, cstruct, mirage
 
+Executable xen_sleep
+  Path:               xen
+  MainIs:             sleep.ml
+  Build$:             flag(xen)
+  CompiledObject:     native
+  Install:            false
+  Target:             xen
+  BuildDepends:       lwt, mirage
+
 Executable xs_test
   Path:               lib_test
   MainIs:             xs_test.ml
@@ -89,10 +98,6 @@ Executable xsbench
   CompiledObject:     best
   Install:            true
   BuildDepends:       lwt, lwt.unix, xenstore, xenstore.client, xenstore.unix
-
-Flag tests
-  Description:        Build and run tests
-  Default:            false
 
 Flag unix
   Description:        Build Unix executables
